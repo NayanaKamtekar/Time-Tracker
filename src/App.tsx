@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { fetchUsers, User } from './API';
-import UsersDropdown from './components/UserDropdown';
+import Tracker, { TrackedItem } from './components/Tracker';
+
 
 const App = () => {
   const [Users, setUsers] = useState<User[]>([]);
-  const [selectedUser, setSelectedUser] = useState('');
+  const [trackedItems, setTrackedItems] = useState<TrackedItem[]>([])
 
   useEffect(() => {
     const getUsers = async () => {
@@ -15,14 +16,15 @@ const App = () => {
     getUsers();
   }, []);
 
-  const getSelectedUser = (e: React.ChangeEvent<HTMLSelectElement>): void => {
-    console.log(e.target.value);
-    setSelectedUser(e.target.value);
+  const handleTrackedItems = (item: TrackedItem): void => {
+    setTrackedItems([...trackedItems, item])
   }
+
+  console.log(trackedItems);
 
   return (
     <div className="App">
-      <UsersDropdown users={Users} callback={getSelectedUser}/>
+      <Tracker users={Users} handleTrackedItems={handleTrackedItems}/>
     </div>
   );
 }
