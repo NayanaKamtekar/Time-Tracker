@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-// import './App.css';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import { fetchUsers, User } from "./API";
+import Nav from "./components/Nav";
 import Tracker, { TrackedItem } from "./components/Tracker";
 import TrackedList from "./components/TrackedList";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import Nav from "./components/Nav";
 
 const App = () => {
   const [Users, setUsers] = useState<User[]>([]);
@@ -29,7 +28,8 @@ const App = () => {
 
   return (
     <Router>
-      <div className="container-fluid">
+      <div className="container-fluid w-75">
+        <h3 className="mb-3 mt-2">Time Tracker</h3>
         <Nav />
         <Route
           path="/tracker"

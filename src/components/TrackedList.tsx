@@ -9,6 +9,7 @@ const TrackedList: React.FC<Props> = ({ trackedItems }) => {
 
   const [modalData, setModalData] = useState<TrackedItem>({
     username: "",
+    name: "",
     projectdes: "",
     projectname: "",
     timespent: "",
@@ -26,7 +27,7 @@ const TrackedList: React.FC<Props> = ({ trackedItems }) => {
             data-bs-toggle="modal"
             data-bs-target="#detailsModal"
           >
-            {trackedItem.username} {trackedItem.projectname}
+            {trackedItem.projectname}
           </li>
         ))}
       </ul>
@@ -51,6 +52,7 @@ const TrackedList: React.FC<Props> = ({ trackedItems }) => {
             </div>
             <div className="modal-body">
                 <p>User: {modalData.username}</p>
+                <p>Name: {modalData.name}</p>
                 <p>Project Description: {modalData.projectdes}</p>
                 <p>Time spent (in mins): {modalData.timespent}</p>
             </div>
