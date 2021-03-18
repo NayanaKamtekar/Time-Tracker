@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { fetchUsers, User } from "./API";
 import Nav from "./components/Nav";
 import Tracker, { TrackedItem } from "./components/Tracker";
@@ -31,21 +31,16 @@ const App = () => {
       <div className="container-fluid w-75">
         <h3 className="mb-3 mt-2">Time Tracker</h3>
         <Nav />
+        <Route path="/" exact render={() => <Redirect to="/tracker" />} />
         <Route
           path="/tracker"
-          render={(props) => (
-            <Tracker
-              {...props}
-              users={Users}
-              handleTrackedItems={handleTrackedItems}
-            />
+          render={() => (
+            <Tracker users={Users} handleTrackedItems={handleTrackedItems} />
           )}
         />
         <Route
           path="/trackedlist"
-          render={(props) => (
-            <TrackedList {...props} trackedItems={trackedItems} />
-          )}
+          render={() => <TrackedList trackedItems={trackedItems} />}
         />
       </div>
     </Router>
