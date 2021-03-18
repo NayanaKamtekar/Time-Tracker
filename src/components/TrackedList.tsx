@@ -15,8 +15,10 @@ const TrackedList: React.FC<Props> = ({ trackedItems }) => {
     timespent: "",
   });
 
-  return (
-    <div>
+  const renderItemList = () => {
+
+    if (trackedItems.length > 0) {
+      return(
       <ul className="list-group mt-3 shadow-sm">
         {trackedItems.map((trackedItem, index) => (
 
@@ -30,7 +32,15 @@ const TrackedList: React.FC<Props> = ({ trackedItems }) => {
             {trackedItem.projectname}
           </li>
         ))}
-      </ul>
+      </ul>)
+    } else {
+      return <h6 className="fst-italic mt-3">Add notes in the tracker to see it here.</h6>;
+    }
+  }
+
+  return (
+    <div>
+      {renderItemList()}
 
       <div
         className="modal fade"
